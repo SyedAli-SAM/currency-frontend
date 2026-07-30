@@ -6,6 +6,22 @@ import { ConverterComponent } from './features/converter/converter.component';
   selector: 'app-root',
   standalone: true,
   imports: [LoaderComponent, ConverterComponent],
-  template: `<app-loader></app-loader><app-converter></app-converter>`,
+  template: `
+    <app-loader></app-loader>
+    <main class="app-shell">
+      <app-converter></app-converter>
+    </main>
+  `,
+  styles: [`
+    :host {
+      display: block;
+      min-height: 100dvh;
+    }
+
+    .app-shell {
+      min-height: 100dvh;
+      padding-top: env(safe-area-inset-top);
+    }
+  `],
 })
 export class AppComponent {}

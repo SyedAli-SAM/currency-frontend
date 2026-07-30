@@ -1,0 +1,36 @@
+<div class="history" *ngIf="(historyService.history$ | async)! as history">
+  <div class="history-header">
+    <div class="history-title">
+      <mat-icon>history</mat-icon>
+      <h2>Recent conversions</h2>
+    </div>
+    <button
+      mat-stroked-button
+      type="button"
+      class="clear-btn"
+      *ngIf="history.length"
+      (click)="historyService.clear()"
+    >
+      Clear all
+    </button>
+  </div>
+
+  <ul class="history-list" *ngIf="history.length; else empty">
+    <li class="history-item" *ngFor="let item of history">
+      <div class="history-conversion">
+        <span class="from">{{ item.amount | number:'1.0-4' }} {{ item.base }}</span>
+        <mat-icon>arrow_forward</mat-icon>
+        <span class="to">{{ item.result | number:'1.0-4' }} {{ item.target }}</span>
+      </div>
+      <time class="date">{{ item.timestamp | date:'MMM d, y · h:mm a' }}</time>
+    </li>
+  </ul>
+
+  <ng-template #empty>
+    <div class="empty-state">
+      <mat-icon>receipt_long</mat-icon>
+      <p>No conversions yet</p>
+      <span>Your conversion history will appear here</span>
+    </div>
+  </ng-template>
+</div>

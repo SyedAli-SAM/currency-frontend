@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -19,7 +19,7 @@ import { ConversionHistoryComponent } from './conversion-history/conversion-hist
   selector: 'app-converter',
   standalone: true,
   imports: [
-    CommonModule, FormsModule, MatFormFieldModule, MatInputModule,
+    CommonModule, DecimalPipe, FormsModule, MatFormFieldModule, MatInputModule,
     MatButtonModule, MatCardModule, MatDatepickerModule, MatNativeDateModule,
     MatIconModule, CurrencySelectComponent, ConversionHistoryComponent,
   ],

@@ -15,7 +15,7 @@ import { CurrencySymbols } from '../../../core/models/currency.model';
       <mat-label>{{ label }}</mat-label>
       <mat-select [(ngModel)]="value" (ngModelChange)="valueChange.emit($event)">
         <mat-option *ngFor="let code of codes()" [value]="code">
-          {{ code }} — {{ symbols[code]?.description }}
+          {{ code }} — {{ symbols[code].description }}
         </mat-option>
       </mat-select>
     </mat-form-field>

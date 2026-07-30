@@ -7,8 +7,23 @@ import { LoadingService } from '../../../core/services/loading.service';
   selector: 'app-loader',
   standalone: true,
   imports: [CommonModule, AsyncPipe, MatProgressBarModule],
-  template: `<mat-progress-bar *ngIf="loading.loading$ | async" mode="indeterminate" class="global-loader"></mat-progress-bar>`,
-  styles: [`.global-loader { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }`],
+  template: `
+    <mat-progress-bar
+      *ngIf="loading.loading$ | async"
+      mode="indeterminate"
+      class="global-loader"
+    ></mat-progress-bar>
+  `,
+  styles: [`
+    .global-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 3px;
+    }
+  `],
 })
 export class LoaderComponent {
   loading = inject(LoadingService);

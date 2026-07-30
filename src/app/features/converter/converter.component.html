@@ -1,38 +1,66 @@
 <div class="converter-page">
-    <mat-card class="converter-card">
-      <h2>Currency Converter</h2>
-  
-      <mat-form-field appearance="outline" class="full-width">
+  <header class="page-header">
+    <div class="header-icon" aria-hidden="true">
+      <mat-icon>currency_exchange</mat-icon>
+    </div>
+    <h1>Currency Converter</h1>
+    <p class="subtitle">Get live exchange rates in seconds</p>
+  </header>
+
+  <mat-card class="converter-card">
+    <div class="form-section">
+      <mat-form-field appearance="outline" class="full-width amount-field">
         <mat-label>Amount</mat-label>
-        <input matInput type="number" [(ngModel)]="amount" min="0" />
+        <input matInput type="number" [(ngModel)]="amount" min="0" inputmode="decimal" />
       </mat-form-field>
-  
-      <div class="select-row">
-        <app-currency-select label="From" [(value)]="from" class="full-width"></app-currency-select>
-        <button mat-icon-button (click)="swap()" aria-label="Swap currencies">
+
+      <div class="currency-row">
+        <app-currency-select label="From" [(value)]="from" class="currency-select"></app-currency-select>
+
+        <button
+          type="button"
+          class="swap-btn"
+          mat-mini-fab
+          (click)="swap()"
+          aria-label="Swap currencies"
+        >
           <mat-icon>swap_vert</mat-icon>
         </button>
-        <app-currency-select label="To" [(value)]="to" class="full-width"></app-currency-select>
+
+        <app-currency-select label="To" [(value)]="to" class="currency-select"></app-currency-select>
       </div>
-  
+
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Date (optional — leave empty for latest rate)</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" [max]="today" />
+        <mat-label>Date (optional)</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" [max]="today" placeholder="Latest rate" />
+        <mat-hint>Leave empty for the latest rate</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-  
-      <button mat-raised-button color="primary" class="full-width convert-btn" (click)="convert()">
-        Convert
-      </button>
-  
-      <p class="error" *ngIf="error">{{ error }}</p>
-  
-      <div class="result" *ngIf="result !== null">
-        <h3>{{ amount }} {{ from }} = {{ result }} {{ to }}</h3>
-        <p>Rate: 1 {{ from }} = {{ rate }} {{ to }}</p>
-      </div>
-    </mat-card>
-  
-    <app-conversion-history></app-conversion-history>
-  </div>
+    </div>
+
+    <button mat-flat-button color="primary" class="convert-btn" (click)="convert()">
+      <mat-icon>sync_alt</mat-icon>
+      Convert
+    </button>
+
+    <p class="error" *ngIf="error" role="alert">
+      <mat-icon>error_outline</mat-icon>
+      {{ error }}
+    </p>
+
+    <div class="result-card" *ngIf="result !== null">
+      <span class="result-label">Converted amount</span>
+      <p class="result-main">
+        <span class="result-amount">{{ amount | number:'1.0-4' }}</span>
+        <span class="result-code">{{ from }}</span>
+        <mat-icon class="result-arrow">arrow_forward</mat-icon>
+        <span class="result-amount highlight">{{ result | number:'1.0-4' }}</span>
+        <span class="result-code">{{ to }}</span>
+      </p>
+      <p class="result-rate">1 {{ from }} = {{ rate | number:'1.2-6' }} {{ to }}</p>
+    </div>
+  </mat-card>
+
+  <app-conversion-history></app-conversion-history>
+</div>
