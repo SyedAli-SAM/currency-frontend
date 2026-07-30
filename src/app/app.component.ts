@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { ConverterComponent } from './features/converter/converter.component';
 
 @Component({
   selector: 'app-root',
-  imports: [],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [LoaderComponent, ConverterComponent],
+  template: `<app-loader></app-loader><app-converter></app-converter>`,
 })
-export class AppComponent {
-  title = 'currency-frontend';
-}
+export class AppComponent {}

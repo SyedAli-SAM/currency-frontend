@@ -1,0 +1,8 @@
+.converter-page { padding: 12px; max-width: 480px; margin: 0 auto; }
+.converter-card { padding: 16px; }
+.full-width { width: 100%; margin-bottom: 8px; }
+.select-row { display: flex; align-items: center; gap: 4px; }
+.select-row app-currency-select { flex: 1; }
+.convert-btn { margin-top: 8px; height: 44px; }
+.result { text-align: center; margin-top: 16px; }
+.error { color: #c62828; }
